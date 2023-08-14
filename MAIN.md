@@ -15,21 +15,16 @@
 **示例1**
 
 ```bash
-
 0xAA #输入
-
 170 #输出
-
 ```
 
 **答案**
 
 ```python
-
 print(int(input(), 16))
 
 # 知识点:python3 中2、8、16进制转换方法bin、oct、hex
-
 ```
 
 ### 排列组合： NC61.两数之和
@@ -135,7 +130,7 @@ class Solution:
             return list1[-1]
 ```
 
-### HJ17.坐标移动
+#### HJ17.坐标移动
 
 **描述**
 开发一个坐标计算工具， A表示向左移动，D表示向右移动，W表示向上移动，S表示向下移动。从（0,0）点开始移动，从输入字符串里面读取一些坐标，并将最终输入结果输出到输出文件里面。  
@@ -186,7 +181,7 @@ x, y = (d['D'] - d['A']), (d['W'] - d['S'])
 print('%d,%d' % (x, y))
 ```
 
-## HJ20.密码验证合格程序
+### HJ20.密码验证合格程序
 **描述**  
 密码要求:  
 1.长度超过8位  
@@ -225,7 +220,7 @@ while True:
         break
 ```
 
-## \*HJ23.删除字符串中出现次数最少的字符
+### \*HJ23.删除字符串中出现次数最少的字符
 **描述**  
 实现删除字符串中出现次数最少的字符，若出现次数最少的字符有多个，则把出现次数最少的字符都删除。输出删除这些单词后的字符串，字符串中其它字符保持原来的顺序。
 数据范围：输入的字符串长度满足 1≤n≤20，保证输入的字符串中仅出现小写字母。  
@@ -242,7 +237,7 @@ for k, v in d.items():
         str1 = str1.replace(k, "")
 print(str1)
 ```
-## \*HJ33.整数与 IP 地址间的转换
+### \*HJ33.整数与 IP 地址间的转换
 **描述**  
 原理：ip地址的每段可以看成是一个0-255的整数，把每段拆分成一个二进制形式组合起来，然后把这个二进制数转变成
 一个长整数。  
@@ -283,7 +278,7 @@ while True:
     except:
         break
 ```
-## HJ101.输入整型数组和排序标识
+### HJ101.输入整型数组和排序标识
 **描述**  
 输入整型数组和排序标识，对其元素按照升序或降序进行排序  
 数据范围：1≤n≤1000，元素大小满足 0≤val≤100000   
@@ -308,7 +303,7 @@ while True:
         break
 ```
 
-## leetcode 1839 最长子字符串
+### leetcode 1839 最长子字符串
 **描述**  
 当一个字符串满足如下条件时，我们称它是 美丽的 ：
 
@@ -369,7 +364,7 @@ class Solution:
             mx = max(mx, cnt)
         return mx
 ```
-## HJ46 截取字符串
+### HJ46 截取字符串
 **描述**  
 输入一个字符串和一个整数k,截取字符串前k个字符并输出  
 数据范围：字符串长度满足 1≤n≤1000，1≤k≤n 
@@ -384,7 +379,7 @@ class Solution:
 print(input()[0:int(input())])
 ```
 
-## NC149 字符串匹配KMP算法
+### NC149 字符串匹配KMP算法
 **描述**
 给你一个文本串T，一个非空模板串S，问S在T中出现了多少次  
 数据范围：  
@@ -413,7 +408,7 @@ class Solution:
                     n+=1
         return n
 ```
-## NC100 字符串转换成整数
+### NC100 字符串转换成整数
 **描述**
 写一个函数 StrToInt，实现把字符串转换成整数这个功能。不能使用 atoi 或者其他类似的库函数。传入的字符串可能有以下部分组成:  
 1. 若干空格
@@ -476,7 +471,7 @@ class Solution:
                 break
         return min(max(sign*num,-2**31),2**31-1)
 ```
-## HJ70 矩阵乘法计算量估算
+### HJ70 矩阵乘法计算量估算
 **描述**
 矩阵乘法的运算量与矩阵乘法的顺序强相关。  
 例如：
@@ -522,7 +517,7 @@ while True:
     except:
         break
 ```
-## 合并表记录
+### 合并表记录
 **描述**
 数据表记录包含表索引index和数值value（int范围的正整数），请对表索引相同的记录进行合并，即将相同索引的数值进行求和运算，输出按照index值升序进行输出。  
 
@@ -558,7 +553,7 @@ for i in range(int(input())):
 for key in sorted(b.keys(),reverse=False):
     print(key,b[key])
 ```
-## *HJ14.字符串排序
+### *HJ14.字符串排序
 **描述**
 给定n个字符串，请对n个字符串按照字典序排列。  
 数据范围： 1≤n≤1000，字符串长度满足 1≤len≤100   
@@ -597,7 +592,7 @@ l.sort(key=str)
 for i in l:
     print(i)
 ```
-## HJ27.查找兄弟单词
+### HJ27.查找兄弟单词
 **描述**  
 定义一个单词的“兄弟单词”为：交换该单词字母顺序（注：可以交换任意次），而不添加、删除、修改原有的字母就能生成的单词。  
 兄弟单词要求和原来的单词不同。例如： ab 和 ba 是兄弟单词。 ab 和 ab 则不是兄弟单词。  
@@ -635,7 +630,7 @@ while True:
     except:
         break
 ```
-## *NC37.合并区间
+### *NC37.合并区间
 **描述**  
 给出一组区间，请合并所有重叠的区间。
 请保证合并后的区间按区间起点升序排列。
@@ -664,7 +659,7 @@ class Solution:
                 res[-1].end = i.end
         return res
 ```
-## *HJ68.成绩排序
+### *HJ68.成绩排序
 **描述** 
 给定一些同学的信息（名字，成绩）序列，请你将他们的信息按照成绩从高到低或从低到高的排列,相同成绩  
 
@@ -683,11 +678,8 @@ Tom       70
 smith     67  
 
 从低到高  
-
 smith     67  
-
 jack      70  
-
 Tom       70  
 peter     96  
 
@@ -722,9 +714,625 @@ while True:
             info = input().split()
             out.append((info[0],int(info[1])))
         for j in sorted(out,key=lambda x:x[1],reverse=flag):
-            print(j[0],j[1])
-        
-        
+            print(j[0],j[1]) 
     except:
         break
+```
+### HJ65 查找两个字符串a,b中的最长公共子串
+**描述**
+查找两个字符串a,b中的最长公共子串。若有多个，输出在较短串中最先出现的那个。  
+注：子串的定义：将一个字符串删去前缀和后缀（也可以不删）形成的字符串。请和“子序列”的概念分开！  
+
+数据范围：字符串长度1≤length≤300 
+进阶：时间复杂度：O(n<sup>3</sup>) ，空间复杂度：O(n) 
+**输入描述** 
+输入两个字符串
+**输出描述**
+返回重复出现的字符
+**示例** 
+```bash
+输入：abcdefghijklmnop
+     abcsafjklmnopqrstuvw
+输出：jklmnop
+```
+**答案**
+```python
+while True:
+    try:
+        str1=input()
+        str2=input()
+        n = 0
+        s = ''
+        if len(str1)>len(str2):
+            str1,str2 = str2, str1
+        for i in range(len(str1)+1):
+            if str1[i-n:i] in str2:
+                s = str1[i-n:i]
+                n +=1
+        print(s)
+    except:
+        break
+```
+###  JZ4 二维数组中的查找
+**描述**  
+在一个二维数组array中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。  
+**示列1**
+```bash
+输入： 7,[[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]]
+
+返回值： true
+
+说明： 存在7，返回true  
+```
+**答案**
+```python
+class Solution:
+    def Find(self , target: int, array: List[List[int]]) -> bool:
+        if len(array) == 0:
+            return False
+        elif len(array[0]) == 0:
+            return False
+        else:
+            m,n = len(array),len(array[0])
+            for i in range(m):
+                if array[i][0] > target:
+                    break
+                if array[i][n-1] < target:
+                    continue
+                else:
+                    for item in array[i]:
+                        if item == target:
+                            return True
+            return False
+```
+### NC52 有效括号序列
+**描述**  
+给出一个仅包含字符'(',')','{','}','['和']',的字符串，判断给出的字符串是否是合法的括号序列
+括号必须以正确的顺序关闭，"()"和"()[]{}"都是合法的括号序列，但"(]"和"([)]"不合法。
+
+数据范围：字符串长度0≤n≤10000  
+要求：空间复杂度O(n)，时间复杂度O(n)  
+**示例**
+```bash
+输入："["
+返回：false
+```
+**答案**
+```python
+class Solution:
+    def isValid(self , s ):
+        # write code here
+        #长度为奇数 一定不对
+        if len(s)%2 == 1:
+            return False
+        #只有3种括号在s中，才进行替换
+        while '{}' in s or '[]' in s or '()' in s:
+            s = s.replace('[]','').replace('{}','').replace('()','')
+        return True if s=='' else False
+```
+### *leetcode 1614. 括号的最大嵌套深度
+**描述**  
+如果字符串满足以下条件之一，则可以称之为 有效括号字符串（valid parentheses string，可以简写为 VPS）：  
+
+字符串是一个空字符串 ""，或者是一个不为 "(" 或 ")" 的单字符。  
+字符串可以写为 AB（A 与 B 字符串连接），其中 A 和 B 都是**有效括号字符**。  
+字符串可以写为 (A)，其中 A 是一个**有效括号字符串**。  
+类似地，可以定义任何有效括号字符串 S 的**嵌套深度**depth(S)：  
+
+depth("") = 0  
+depth(C) = 0，其中 C 是单个字符的字符串，且该字符不是 "(" 或者 ")"  
+depth(A + B) = max(depth(A), depth(B))，其中 A 和 B 都是**有效括号字符串**  
+depth("(" + A + ")") = 1 + depth(A)，其中 A 是一个**有效括号字符串**  
+例如：""、"()()"、"()(()())" 都是**有效括号字符串**（嵌套深度分别为 0、1、2），而 ")(" 、"(()" 都不是**有效括号字符串**。  
+
+给你一个**有效括号字符串** s，返回该字符串的 s **嵌套深度**。  
+```python
+class Solution(object):
+    def maxDepth(self, s):
+        stack, cnt = 0, 0
+        for c in s:
+            if c == '(':
+                stack += 1
+                cnt = max(cnt, stack)
+            elif c == ')':
+                stack -= 1
+        return cnt        
+```
+**示例1**
+```text
+输入：s = "(1+(2*3)+((8)/4))+1"
+输出：3
+解释：数字 8 在嵌套的 3 层括号中。
+```
+**答案** 
+```python
+class Solution:
+    def maxDepth(self, s: str) -> int:
+        ans, size = 0, 0
+        for ch in s:
+            if ch == '(':
+                size += 1
+                ans = max(ans, size)
+            elif ch == ')':
+                size -= 1
+        return ans
+```
+### 合法的括号字符串
+**描述**
+给定一个字符串s，字符串s只包含以下三种字符: (，*，)，请你判断 s是不是一个合法的括号字符串。合法括号字符串有如下规则:
+1.左括号'('必须有对应的右括号')'
+2.右括号')'必须有对应的左括号'('
+3.左括号必须在对应的右括号前面
+4.*可以视为单个左括号，也可以视为单个右括号，或者视为一个空字符
+5.空字符串也视为合法的括号字符串
+
+数据范围:1<=s.length<=100
+**示例**
+```bash
+输入："()()"
+返回值：true
+
+输入："((*)"
+返回值：true
+```
+**答案**
+```python
+#
+# 代码中的类名、方法名、参数名已经指定，请勿修改，直接返回方法规定的值即可
+#
+# 
+# @param s string字符串 
+# @return bool布尔型
+#
+class Solution:
+    def isValidString(self , s: str) -> bool:
+        left_min = left_max = 0
+        
+        for ch in s:
+            if ch == '(':
+                left_min += 1
+                left_max += 1
+            elif ch == ')':
+                left_min -= 1
+                left_max -= 1
+            else:
+                left_min -= 1
+                left_max += 1
+            
+            if left_max < 0:
+                return False
+            
+            if left_min < 0:
+                left_min = 0
+
+        return left_min == 0  
+```
+
+### Leetcode 面试题 08.08. 有重复字符串的排列组合
+**描述**
+有重复字符串的排列组合。编写一种方法，计算某字符串的所有排列组合。
+**示例**
+```bash
+ 输入：S = "qqe"
+ 输出：["eqq","qeq","qqe"]
+ ```
+ **答案**
+```python
+
+class Solution:
+    def permutation(self, S: str) -> List[str]:
+        return list(set(''.join(tmp)  for tmp in itertools.permutations(S,len(S))))
+```
+
+### Leectcode 77.组合
+**描述**
+给定两个整数 n 和 k，返回范围 [1, n] 中所有可能的 k 个数的组合。
+
+你可以按 任何顺序 返回答案。
+**示例**
+```bash
+输入：n = 4, k = 2
+输出：
+[
+  [2,4],
+  [3,4],
+  [2,3],
+  [1,2],
+  [1,3],
+  [1,4],
+]
+```
+**答案**
+```python
+class Solution:
+    def combine(self, n: int, k: int) -> List[List[int]]:
+        return list(itertools.combinations(range(1, n+1), k))
+```
+
+### Leetcode 674
+**描述**  
+给定一个未经排序的整数数组，找到最长且 连续递增的子序列，并返回该序列的长度。
+
+连续递增的子序列 可以由两个下标 l 和 r（l < r）确定，如果对于每个 l <= i < r，都有 nums[i] < nums[i + 1] ，那么子序列 [nums[l], nums[l + 1], ..., nums[r - 1], nums[r]] 就是连续递增子序列。  
+**示例**
+```bash
+输入：nums = [1,3,5,4,7]
+输出：3
+解释：最长连续递增序列是 [1,3,5], 长度为3。
+尽管 [1,3,5,7] 也是升序的子序列, 但它不是连续的，因为 5 和 7 在原数组里被 4 隔开。 
+```
+**答案**
+```python
+class Solution:
+    def findLengthOfLCIS(self, nums: List[int]) -> int:
+        from math import inf
+        res=0
+        idx=0
+        nums.append(-inf)
+        for i in range(1,len(nums)):
+            if nums[i]<=nums[i-1]:
+                res=max(res,i-idx)
+                idx=i
+        return res
+```
+### NC17 最长回文子串
+**描述**  
+对于长度为n的一个字符串A（仅包含数字，大小写英文字母），请设计一个高效算法，计算其中最长回文子串的长度。
+
+数据范围1≤n≤1000
+要求: 空间复杂度O(1)，时间复杂度O(n<sup>2</sup>)
+进阶: 空间复杂度 O(n)，时间复杂度 O(n)  
+**示例**
+```bash
+输入："ababc"
+返回值：3
+```
+**答案**
+```python
+class Solution:
+    def getLongestPalindrome(self , A: str) -> int:
+        s = list(A)
+        if s == s[::-1]: return len(s)
+        l, max_length = 0, 1
+        for i in range(1, len(s)):
+            even = s[i - max_length:i + 1]
+            odd = s[i - max_length - 1:i + 1]
+            if i - max_length >= 0 and even == even[::-1]:
+                l = i - max_length
+                max_length += 1
+            if i - max_length - 1 >= 0 and odd == odd[::-1]:
+                l = i - max_length - 1
+                max_length += 2
+        return max_length
+```
+### NC28 最小覆盖子串
+**描述**  
+给出两个字符串 s 和 t，要求在 s 中找出最短的包含 t 中所有字符的连续子串。
+
+数据范围：0≤∣S∣,∣T∣≤10000，保证s和t字符串中仅包含大小写英文字母  
+要求：进阶：空间复杂度O(n)，时间复杂度O(n)  
+例如：  
+S="XDOYEZODEYXNZ"  
+T="XYZ"  
+找出的最短子串为"YXNZ".  
+
+注意：  
+如果 s 中没有包含 t 中所有字符的子串，返回空字符串 “”；  
+满足条件的子串可能有很多，但是题目保证满足条件的最短的子串唯一。   
+**示例**
+```bash
+输入："XDOYEZODEYXNZ","XYZ"
+返回值："YXNZ"
+```
+**答案**
+```python
+class Solution:
+    def minWindow(self , S: str, T: str) -> str:
+        # write code here
+        needcnt: int = len(T)
+        import collections
+        need = collections.defaultdict(int)
+        for c in T:
+            need[c] += 1
+        res = (0, float('inf'))
+
+        i = 0
+        for j, c in enumerate(S):
+            if need[c] > 0:
+                needcnt -= 1
+            need[c] -= 1
+
+            if needcnt == 0:
+                while True:
+                    c1 = S[i]
+                    if need[c1] == 0:
+                        break
+                    need[c1] += 1
+                    i += 1
+
+                if j - i < res[1] - res[0]:
+                    res = (i, j)
+                
+                need[S[i]] += 1
+                needcnt += 1
+                i += 1
+        return '' if res[1] > len(S) else S[res[0] : res[1] + 1]
+```
+### 称砝码
+**描述**  
+现有n种砝码，重量互不相等，分别为 m1,m2,m3…mn ；  
+每种砝码对应的数量为 x1,x2,x3...xn 。现在要用这些砝码去称物体的重量(放在同一侧)，问能称出多少种不同的重量。
+
+注：  
+称重重量包括 0
+
+数据范围：每组输入数据满足 1≤n≤10，1≤m<sub>i</sub>≤2000，1≤x<sub>i</sub>≤10   
+**输入描述：**  
+对于每组测试数据：  
+第一行：n --- 砝码的种数(范围[1,10])  
+第二行：m1 m2 m3 ... mn --- 每种砝码的重量(范围[1,2000])  
+第三行：x1 x2 x3 .... xn --- 每种砝码对应的数量(范围[1,10])  
+**输出描述：**  
+利用给定的砝码可以称出的不同的重量数  
+**示例**
+```bash
+输入：2
+     1 2
+     2 1
+输出：5
+说明：可以表示出0，1，2，3，4五种重量。   
+```
+**答案**
+```python
+n_weights = int(input())
+weights = [int(w) for w in input().split()]
+nums = [int(i) for i in input().split()]
+
+# credits to wfj
+def count_different_weights(n, weight_lst, count_lst):
+    exist_weights = {0}
+    for w, c in zip(weight_lst, count_lst):
+        need_try_to_add_one = exist_weights
+        for i in range(c):
+            need_try_to_add_more = []
+            for wi in need_try_to_add_one:
+                wi += w
+                if wi not in exist_weights:
+                    need_try_to_add_more.append(wi)
+            need_try_to_add_one = need_try_to_add_more
+            exist_weights.update(need_try_to_add_one)
+    return len(exist_weights)
+
+result = count_different_weights(n_weights, weights, nums)
+print(result)
+```
+### *剑指 Offer 32 - II. 从上到下打印二叉树 II
+**描述**  
+从上到下按层打印二叉树，同一层的节点按从左到右的顺序打印，每一层打印到一行。
+
+例如:
+给定二叉树: [3,9,20,null,null,15,7],
+```text
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+返回其层次遍历结果：
+```text
+[
+  [3],
+  [9,20],
+  [15,7]
+]
+```
+提示：节点总数 <= 1000
+**答案**
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
+        res, queue = [], collections.deque()
+        queue.append(root)
+        while queue:
+            tmp = []
+            for _ in range(len(queue)):
+                node = queue.popleft()
+                tmp.append(node.val)
+                if node.left: queue.append(node.left)
+                if node.right: queue.append(node.right)
+            res.append(tmp)
+        return res
+```
+### 剑指 Offer 32 - III. 从上到下打印二叉树 III
+**描述**  
+请实现一个函数按照之字形顺序打印二叉树，即第一行按照从左到右的顺序打印，第二层按照从右到左的顺序打印，第三行再按照从左到右的顺序打印，其他行以此类推。  
+例如:  
+给定二叉树: [3,9,20,null,null,15,7],
+```text
+    3
+   / \
+  9  20
+    /  \
+   15   7
+```
+返回其层次遍历结果：
+```text
+[
+  [3],
+  [20,9],
+  [15,7]
+]
+```
+**答案**
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        if not root: return []
+        res, deque = [], collections.deque([root])
+        while deque:
+            tmp = collections.deque()
+            for _ in range(len(deque)):
+                node = deque.popleft()
+                if len(res) % 2: tmp.appendleft(node.val) # 偶数层 -> 队列头部
+                else: tmp.append(node.val) # 奇数层 -> 队列尾部
+                if node.left: deque.append(node.left)
+                if node.right: deque.append(node.right)
+            res.append(list(tmp))
+        return res
+```
+### HJ48 从单向链表中删除指定值的节点
+**描述**  
+输入一个单向链表和一个节点的值，从单向链表中删除等于该值的节点，删除后如果链表中无节点则返回空指针。
+
+链表的值不能重复。
+
+构造过程，例如输入一行数据为:  
+6 2 1 2 3 2 5 1 4 5 7 2 2  
+则第一个参数6表示输入总共6个节点，第二个参数2表示头节点值为2，剩下的2个一组表示第2个节点值后面插入第1个节点值，为以下表示:  
+1 2 表示为  
+2->1  
+链表为2->1  
+
+3 2表示为  
+2->3  
+链表为2->3->1
+
+5 1表示为  
+1->5  
+链表为2->3->1->5
+
+4 5表示为  
+5->4  
+链表为2->3->1->5->4
+
+7 2表示为  
+2->7  
+链表为2->7->3->1->5->4
+
+最后的链表的顺序为 2 7 3 1 5 4
+
+最后一个参数为2，表示要删掉节点为2的值  
+删除 结点 2
+
+则结果为 7 3 1 5 4
+
+数据范围：链表长度满足1≤n≤1000 ，节点中的值满足 0≤val≤10000 
+
+测试用例保证输入合法
+
+**输入描述：**  
+输入一行，有以下4个部分：  
+1 输入链表结点个数  
+2 输入头结点的值  
+3 按照格式插入各个结点  
+4 输入要删除的结点的值  
+
+**输出描述：** 
+输出一行
+输出删除结点后的序列，每个数后都要加空格
+```bash
+输入：
+    5 2 3 2 4 3 5 2 1 4 3
+输出：
+    2 5 4 1
+说明：
+    形成的链表为2->5->3->4->1
+    删掉节点3，返回的就是2->5->4->1  
+```
+**答案**
+```python
+while True:
+    try:
+        string = list(map(int, input().split()))
+        link = []  # 链表
+        link.append(string[1])  # 表头
+        for i in range(1, string[0]):
+            link.insert(link.index(string[2*i+1]) + 1, string[2*i])
+        
+        link.remove(string[-1])
+        print(' '.join(map(str, link)))
+    except:
+        break
+```
+### Leetcode 160. 相交链表
+**描述**
+给你两个单链表的头节点 headA 和 headB ，请你找出并返回两个单链表相交的起始节点。如果两个链表不存在相交节点，返回 null 。
+
+图示两个链表在节点 c1 开始相交：
+
+![Alt text](image.png)
+
+题目数据 保证 整个链式结构中不存在环。
+
+注意，函数返回结果后，链表必须 保持其原始结构 。
+
+自定义评测：
+
+评测系统 的输入如下（你设计的程序 不适用 此输入）：
+
+intersectVal - 相交的起始节点的值。如果不存在相交节点，这一值为 0  
+listA - 第一个链表  
+listB - 第二个链表  
+skipA - 在 listA 中（从头节点开始）跳到交叉节点的节点数  
+skipB - 在 listB 中（从头节点开始）跳到交叉节点的节点数  
+评测系统将根据这些输入创建链式数据结构，并将两个头节点 headA 和 headB 传递给你的程序。如果程序能够正确返回相交节点，那么你的解决方案将被 视作正确答案。  
+**示例**
+![Alt text](image-1.png)
+```text
+输入：intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
+输出：Intersected at '8'
+解释：相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
+从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
+在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+— 请注意相交节点的值不为 1，因为在链表 A 和链表 B 之中值为 1 的节点 (A 中第二个节点和 B 中第三个节点) 是不同的节点。换句话说，它们在内存中指向两个不同的位置，而链表 A 和链表 B 中值为 8 的节点 (A 中第三个节点，B 中第四个节点) 在内存中指向相同的位置。
+```
+**提示：**  
+listA 中节点数目为 m  
+listB 中节点数目为 n  
+1 <= m, n <= 3 * 104  
+1 <= Node.val <= 105  
+0 <= skipA <= m  
+0 <= skipB <= n  
+如果 listA 和 listB 没有交点，intersectVal 为 0  
+如果 listA 和 listB 有交点，intersectVal == listA[skipA] == listB[skipB]  
+ 
+
+**进阶：** 你能否设计一个时间复杂度 O(m + n) 、仅用 O(1) 内存的解决方案？   
+**答案**
+```python
+class Solution:
+    def getIntersectionNode(self, headA: ListNode, headB: ListNode) -> ListNode:
+        A, B = headA, headB
+        while A != B:
+            A = A.next if A else headB
+            B = B.next if B else headA
+        return A
+```
+### Leetcode 21. 合并两个有序链表
+**描述**  
+将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+**示例 1：**
+![Alt text](image-2.png)
+```text
+输入：l1 = [1,2,4], l2 = [1,3,4]
+输出：[1,1,2,3,4,4]
+```
+**提示：**
+两个链表的节点数目范围是 [0, 50]  
+-100 <= Node.val <= 100  
+l1 和 l2 均按 非递减顺序 排列  
+**答案**
+```python
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if not l1: return l2  # 终止条件，直到两个链表都空
+        if not l2: return l1
+        if l1.val <= l2.val:  # 递归调用
+            l1.next = self.mergeTwoLists(l1.next,l2)
+            return l1
+        else:
+            l2.next = self.mergeTwoLists(l1,l2.next)
+            return l2
 ```
