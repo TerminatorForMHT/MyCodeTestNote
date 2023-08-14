@@ -1336,3 +1336,435 @@ class Solution:
             l2.next = self.mergeTwoLists(l1,l2.next)
             return l2
 ```
+### Leetcode 994. 腐烂的橘子
+**描述**
+在给定的 m x n 网格 grid 中，每个单元格可以有以下三个值之一：
+
+值 0 代表空单元格；  
+值 1 代表新鲜橘子；  
+值 2 代表腐烂的橘子。  
+每分钟，腐烂的橘子 周围 4 个方向上相邻 的新鲜橘子都会腐烂。
+
+返回 直到单元格中没有新鲜橘子为止所必须经过的最小分钟数。如果不可能，返回 -1 。  
+**示例 1：**
+![Alt text](image-3.png)
+```text
+输入：grid = [[2,1,1],[1,1,0],[0,1,1]]
+输出：4
+```
+提示：
+
+m == grid.length  
+n == grid[i].length  
+1 <= m, n <= 10  
+grid[i][j] 仅为 0、1 或 2  
+*答案**
+```python
+class Solution:
+    def orangesRotting(self, grid: List[List[int]]) -> int:
+        row = len(grid)
+        col = len(grid[0])
+        rotten = {(i, j) for i in range(row) for j in range(col) if grid[i][j] == 2} # 腐烂集合
+        fresh = {(i, j) for i in range(row) for j in range(col) if grid[i][j] == 1}  # 新鲜集合
+        time = 0
+        while fresh:
+            if not rotten: return -1
+            rotten = {(i + di, j + dj) for i, j in rotten for di, dj in [(0, 1), (0, -1), (1, 0), (-1, 0)] if (i + di, j + dj) in fresh} # 即将腐烂的如果在新鲜的集合中，就将它腐烂
+            fresh -= rotten # 剔除腐烂的
+            time += 1
+        return time
+```
+### 204. 计数质数
+**描述**  
+给定整数 n ，返回 所有小于非负整数 n 的质数的数量 。
+**示例 1：**
+```text
+输入：n = 10
+输出：4
+解释：小于 10 的质数一共有 4 个, 它们是 2, 3, 5, 7 。
+```
+提示：0 <= n <= 5 * 106
+**答案**
+```python
+def count_primes_py(n):
+    """
+    求n以内的所有质数个数（纯python代码）
+    """
+    # 最小的质数是 2
+    if n < 2:
+        return 0
+
+    isPrime = [1] * n
+    isPrime[0] = isPrime[1] = 0   # 0和1不是质数，先排除掉
+
+    # 埃式筛，把不大于根号 n 的所有质数的倍数剔除
+    for i in range(2, int(n ** 0.5) + 1):
+        if isPrime[i]:
+            isPrime[i * i:n:i] = [0] * ((n - 1 - i * i) // i + 1)
+
+    return sum(isPrime)
+```
+### Leetcode 剑指 Offer 61. 扑克牌中的顺子
+**描述**  
+从若干副扑克牌中随机抽 5 张牌，判断是不是一个顺子，即这5张牌是不是连续的。2～10为数字本身，A为1，J为11，Q为12，K为13，而大、小王为 0 ，可以看成任意数字。A 不能视为 14。  
+**示例 1:**
+```text
+输入: [1,2,3,4,5]
+输出: True
+```
+限制：  
+数组长度为 5   
+数组的数取值为 [0, 13] .  
+```python
+class Solution:
+    def isStraight(self, nums: List[int]) -> bool:
+        repeat = set()
+        ma, mi = 0, 14
+        for num in nums:
+            if num == 0: continue # 跳过大小王
+            ma = max(ma, num) # 最大牌
+            mi = min(mi, num) # 最小牌
+            if num in repeat: return False # 若有重复，提前返回 false
+            repeat.add(num) # 添加牌至 Set
+        return ma - mi < 5 # 最大牌 - 最小牌 < 5 则可构成顺子 
+```
+### Leetcode 322. 零钱兑换
+**描述**  
+给你一个整数数组 coins ，表示不同面额的硬币；以及一个整数 amount ，表示总金额。  
+计算并返回可以凑成总金额所需的 最少的硬币个数 。如果没有任何一种硬币组合能组成总金额，返回 -1 。  
+你可以认为每种硬币的数量是无限的。
+**示例1**  
+```text
+输入：coins = [1, 2, 5], amount = 11
+输出：3 
+解释：11 = 5 + 5 + 1
+```
+提示：  
+1 <= coins.length <= 12  
+1 <= coins[i] <= 231 - 1  
+0 <= amount <= 104  
+**答案**  
+```python
+class Solution:
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        
+        n = len(coins)
+        dp = [[amount+1] * (amount+1) for _ in range(n+1)]    # 初始化为一个较大的值，如 +inf 或 amount+1
+        # 合法的初始化
+        dp[0][0] = 0    # 其他 dp[0][j]均不合法
+        
+        # 完全背包：套用0-1背包【遍历硬币数目k】
+        for i in range(1, n+1):                     # 第一层循环：遍历硬币
+            for j in range(amount+1):               # 第二层循环：遍历背包
+                for k in range(j//coins[i-1]+1):    # 第三层循环：当前硬币coin取k个 (k*coin<=amount)
+                    dp[i][j] = min( dp[i][j], dp[i-1][j-k*coins[i-1]] + k )
+
+        ans = dp[n][amount] 
+        return ans if ans != amount+1 else -1
+```
+### Leetcode 200. 岛屿数量
+**描述**  
+给你一个由 '1'（陆地）和 '0'（水）组成的的二维网格，请你计算网格中岛屿的数量。  
+岛屿总是被水包围，并且每座岛屿只能由水平方向和/或竖直方向上相邻的陆地连接形成。  
+此外，你可以假设该网格的四条边均被水包围。  
+**示例1**
+```text
+输入：grid = [
+  ["1","1","1","1","0"],
+  ["1","1","0","1","0"],
+  ["1","1","0","0","0"],
+  ["0","0","0","0","0"]
+]
+输出：1
+```
+提示：
+
+m == grid.length  
+n == grid[i].length  
+1 <= m, n <= 300  
+grid[i][j] 的值为 '0' 或 '1'  
+**答案**  
+```python
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        m = len(grid)
+        n = len(grid[0])
+        res = 0
+
+        def dfs(x, y):
+            if grid[x][y] == '1':
+                grid[x][y] = '0'
+            else:
+                return
+            if x > 0:
+                dfs(x - 1, y)
+            if x < m - 1:
+                dfs(x + 1, y)
+            if y > 0:
+                dfs(x, y - 1)
+            if y < n - 1:
+                dfs(x, y + 1)
+            
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '1':
+                    dfs(i, j)
+                    res += 1
+        return res
+```
+### HJ25 数据分类处理
+**描述**  
+信息社会，有海量的数据需要分析处理，比如公安局分析身份证号码、 QQ 用户、手机号码、银行帐号等信息及活动记录。
+
+采集输入大数据和分类规则，通过大数据分类处理程序，将大数据分类输出。
+
+数据范围：1≤I,R≤100  ，输入的整数大小满足 0≤val≤2<sup>31−1</sup> 
+
+输入描述：
+﻿一组输入整数序列I和一组规则整数序列R，I和R序列的第一个整数为序列的个数（个数不包含第一个整数）；整数范围为0~(2^31)-1，序列个数不限
+
+输出描述：
+﻿从R依次中取出R<i>，对I进行处理，找到满足条件的I： 
+
+I整数对应的数字需要连续包含R<i>对应的数字。比如R<i>为23，I为231，那么I包含了R<i>，条件满足 。 
+
+按R<i>从小到大的顺序:
+
+(1)先输出R<i>； 
+
+(2)再输出满足条件的I的个数； 
+
+(3)然后输出满足条件的I在I序列中的位置索引(从0开始)； 
+
+(4)最后再输出I。 
+
+附加条件： 
+
+(1)R<i>需要从小到大排序。相同的R<i>只需要输出索引小的以及满足条件的I，索引大的需要过滤掉 
+
+(2)如果没有满足条件的I，对应的R<i>不用输出 
+
+(3)最后需要在输出序列的第一个整数位置记录后续整数序列的个数(不包含“个数”本身)
+
+ 
+
+序列I：15,123,456,786,453,46,7,5,3,665,453456,745,456,786,453,123（第一个15表明后续有15个整数） 
+
+序列R：5,6,3,6,3,0（第一个5表明后续有5个整数） 
+
+输出：30, 3,6,0,123,3,453,7,3,9,453456,13,453,14,123,6,7,1,456,2,786,4,46,8,665,9,453456,11,456,12,786
+
+说明：
+
+30----后续有30个整数
+
+3----从小到大排序，第一个R<i>为0，但没有满足条件的I，不输出0，而下一个R<i>是3
+
+6--- 存在6个包含3的I 
+
+0--- 123所在的原序号为0 
+
+123--- 123包含3，满足条件 
+
+**示例** 
+```text
+输入：
+    15 123 456 786 453 46 7 5 3 665 453456 745 456 786 453 123
+    5 6 3 6 3 0
+输出：
+    30 3 6 0 123 3 453 7 3 9 453456 13 453 14 123 6 7 1 456 2 786 4 46 8 665 9 453456 11 456 12 786
+说明：
+    将序列R：5,6,3,6,3,0（第一个5表明后续有5个整数）排序去重后，可得0,3,6。
+    序列I没有包含0的元素。
+    序列I中包含3的元素有：I[0]的值为123、I[3]的值为453、I[7]的值为3、I[9]的值为453456、I[13]的值为453、I[14]的值为123。
+    序列I中包含6的元素有：I[1]的值为456、I[2]的值为786、I[4]的值为46、I[8]的值为665、I[9]的值为453456、I[11]的值为456、I[12]的值为786。
+    最后按题目要求的格式进行输出即可。 
+```
+**答案**
+```python
+try:
+    while True:
+        l1=input().split()[1:]
+        l2=list(map(int,input().split()))[1:]
+        l2=list(set(l2))
+        l2.sort()
+        res=[]
+        l2=list(map(str,l2))
+        for i in range(len(l2)):
+            ans =[]
+            for j in range(len(l1)):
+                if l2[i] in l1[j]:
+                    ans.append(str(j))
+                    ans.append(l1[j])
+            if ans:
+                res.append(l2[i])
+                res.append(str(len(ans)//2))
+                res +=ans
+        ss = str(len(res))+' '+' '.join(res)
+        print(ss)
+except:
+    pass
+```
+### HJ29 字符串加解密
+**描述** 
+对输入的字符串进行加解密，并输出。
+
+加密方法为：
+
+当内容是英文字母时则用该英文字母的后一个字母替换，同时字母变换大小写,如字母a时则替换为B；字母Z时则替换为a；
+
+当内容是数字时则把该数字加1，如0替换1，1替换2，9替换0；
+
+其他字符不做变化。
+
+解密方法为加密的逆过程。
+数据范围：输入的两个字符串长度满足 1≤n≤1000  ，保证输入的字符串都是只由大小写字母或者数字组成  
+**输入描述：**  
+第一行输入一串要加密的密码  
+第二行输入一串加过密的密码  
+
+**输出描述：**  
+第一行输出加密后的字符  
+第二行输出解密后的字符   
+**示例1**  
+```text
+输入：
+    abcdefg
+    BCDEFGH
+输出：
+    BCDEFGH
+    abcdefg
+``` 
+**答案**
+```python
+while True:
+    try:
+        a = input()
+        b = input()
+        m = []
+        n = []
+        for c in a:
+            c = str(c)
+            if c == 'Z':
+                c = 'a'
+            elif c == 'z':
+                c = 'A'
+            elif c.islower():
+                c = chr(ord(c)+1).upper()
+            elif c.isupper():
+                c = chr(ord(c)+1).lower()
+            elif c == '9':
+                c = '0'
+            elif c.isdigit():
+                c = str(int(c) + 1)
+            m.append(c)
+        print(''.join(m))
+        for c in b:
+            c = str(c)
+            if c == 'a':
+                c = 'Z'
+            elif c == 'A':
+                c = 'z'
+            elif c.islower():
+                c = chr(ord(c.upper())-1)
+            elif c.isupper():
+                c = chr(ord(c.lower())-1)
+            elif c == '0':
+                c = '9'
+            elif c.isdigit():
+                c = str(int(c) - 1)
+            n.append(c)
+        print(''.join(n))
+    except:
+        break
+```
+### HJ43 迷宫问题
+**描述**  
+定义一个二维数组 N*M ，如 5 × 5 数组下所示：
+
+
+int maze[5][5] = {  
+0, 1, 0, 0, 0,  
+0, 1, 1, 1, 0,  
+0, 0, 0, 0, 0,  
+0, 1, 1, 1, 0,  
+0, 0, 0, 1, 0,  
+};  
+
+它表示一个迷宫，其中的1表示墙壁，0表示可以走的路，只能横着走或竖着走，不能斜着走，要求编程序找出从左上角到右下角的路线。入口点为[0,0],既第一格是可以走的路。
+
+
+数据范围：2≤n,m≤10  ， 输入的内容只包含 0≤val≤1 
+
+**输入描述：**  
+输入两个整数，分别表示二维数组的行数，列数。再输入相应的数组，其中的1表示墙壁，0表示可以走的路。数据保证有唯一解,不考虑有多解的情况，即迷宫只有一条通道。
+
+**输出描述：**  
+左上角到右下角的最短路径，格式如样例所示。
+```text
+输入：
+    5 5
+    0 1 0 0 0
+    0 1 1 1 0
+    0 0 0 0 0
+    0 1 1 1 0
+    0 0 0 1 0
+输出：
+    (0,0)
+    (1,0)
+    (2,0)
+    (2,1)
+    (2,2)
+    (2,3)
+    (2,4)
+    (3,4)
+    (4,4)
+```
+**答案**
+```python
+maze = []
+maze_visit = []
+myStack = []
+move = [(0,1), (0,-1), (1,0), (-1,0)]
+N, M = 0, 0
+def DFS(x, y):
+    
+    if x <0 or x >= N or y < 0 or y >= M:
+        return False
+    if maze_visit[x][y] == True:
+        return False
+    if maze[x][y] == 1:
+        return False
+    maze_visit[x][y] = True
+    if x == N-1 and y == M-1:
+        myStack.append((x,y))
+        return True
+    for m in move:
+        next_x = x+m[0]
+        next_y = y+m[1]
+        if DFS(next_x, next_y):
+            myStack.append((x,y))
+            return True
+    return False
+
+while True:
+    try:
+        maze  = []
+        maze_visit = []
+        myStack = []
+        N, M = map(int, input().split())
+        for i in range(N):
+            row = input().split()
+            maze.append([int(num) for num in row])
+            maze_visit.append([False]*len(row))
+        #print(N, M)
+        #print(maze)
+        #print(maze_visit)
+        DFS(0,0)
+        myStack = myStack[::-1]
+        for row in myStack:
+            print('(' + str(row[0]) + ','+ str(row[1]) + ')')
+    except:
+        break
+```
+
